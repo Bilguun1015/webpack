@@ -1,0 +1,26 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "This is a simple application to learn webpack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bilguun1015/webpack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bilguun1015/webpack/issues"
+  },
+  "homepage": "https://github.com/Bilguun1015/webpack#readme",
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0"
+  }
+}
