@@ -25,6 +25,12 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      // loading scss with js file
+      {
+        test: /\.scss$/,
+        // it goes from the end of the array
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
 };
