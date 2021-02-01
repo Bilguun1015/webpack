@@ -1,11 +1,15 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'hello-world': './src/hello-world.js',
+    bg: './src/bg.js',
+  },
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, './dist'),
     // publicPath: 'http://some-cdn.com/',
     publicPath: '',
@@ -30,7 +34,7 @@ module.exports = {
       // using the css file with MiniCss plugin
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       // loading scss with js file
       // {
@@ -42,7 +46,7 @@ module.exports = {
       // loading scss with MiniCss plugin
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.js$/,
@@ -62,13 +66,28 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
     new CleanWebpackPlugin(),
     // customizing the html
     new HtmlWebpackPlugin({
+      filename: 'hello-world.html',
+      chunks: ['hello-world'],
       title: 'Hello world',
-      template: 'src/index.hbs',
+      template: 'src/page-template.hbs',
       // filename: 'subfolder/custom_filename.html',
-      description: 'new description',
+      description: 'hello world',
+      minify: false,
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'bg.html',
+      chunks: ['bg'],
+      title: 'background',
+      template: 'src/page-template.hbs',
+      // filename: 'subfolder/custom_filename.html',
+      description: 'background image ',
+      minify: false,
     }),
   ],
 };
