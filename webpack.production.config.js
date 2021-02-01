@@ -1,6 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -12,7 +10,7 @@ module.exports = {
     // publicPath: 'http://some-cdn.com/',
     publicPath: '',
   },
-  mode: 'none',
+  mode: 'production',
   module: {
     rules: [
       // {
@@ -32,7 +30,7 @@ module.exports = {
       // using the css file with MiniCss plugin
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
       // loading scss with js file
       // {
@@ -44,7 +42,7 @@ module.exports = {
       // loading scss with MiniCss plugin
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.js$/,
@@ -64,15 +62,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new TerserPlugin(),
-    new MiniCssExtractPlugin({ filename: 'style.[contenthash].css' }),
-    // adding cleanup for the builder outside of dist
-    // new CleanWebpackPlugin({
-    //   cleanOnceBeforeBuildPatterns: [
-    //     '**/*',
-    //     path.join(process.cwd(), 'build/**/*'),
-    //   ],
-    // }),
     new CleanWebpackPlugin(),
     // customizing the html
     new HtmlWebpackPlugin({
