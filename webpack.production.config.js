@@ -18,6 +18,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
+      minSize: 3000,
     },
   },
   module: {
@@ -81,7 +82,6 @@ module.exports = {
       chunks: ['hello-world'],
       title: 'Hello world',
       template: 'src/page-template.hbs',
-      // filename: 'subfolder/custom_filename.html',
       description: 'hello world',
       minify: false,
     }),
@@ -90,7 +90,6 @@ module.exports = {
       chunks: ['bg'],
       title: 'background',
       template: 'src/page-template.hbs',
-      // filename: 'subfolder/custom_filename.html',
       description: 'background image ',
       minify: false,
     }),

@@ -4,9 +4,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'hello-world': './src/hello-world.js',
+    bg: './src/bg.js',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
     // publicPath: 'http://some-cdn.com/',
     publicPath: '',
@@ -80,10 +83,20 @@ module.exports = {
     new CleanWebpackPlugin(),
     // customizing the html
     new HtmlWebpackPlugin({
+      filename: 'hello-world.html',
+      chunks: ['hello-world'],
       title: 'Hello world',
-      template: 'src/index.hbs',
+      template: 'src/page-template.hbs',
       // filename: 'subfolder/custom_filename.html',
-      description: 'new description',
+      description: 'hello world',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'bg.html',
+      chunks: ['bg'],
+      title: 'Background',
+      template: 'src/page-template.hbs',
+      // filename: 'subfolder/custom_filename.html',
+      description: 'background img',
     }),
   ],
 };
