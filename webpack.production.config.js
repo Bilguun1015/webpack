@@ -12,7 +12,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, './dist'),
     // publicPath: 'http://some-cdn.com/',
-    publicPath: '',
+    publicPath: '/static/',
   },
   mode: 'production',
   optimization: {
